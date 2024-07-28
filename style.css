@@ -101,6 +101,14 @@ button:hover {
     font-size: 1.5em;
     margin-bottom: 0.5em;
 }
+#progress-container {
+    margin: 1em 0;
+}
+
+progress {
+    width: 100%;
+    height: 20px;
+}
 
 /* Breaking News  */
 .marquee {
