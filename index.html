@@ -3,35 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eBooks Download</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Firebase SDK -->
-    <script defer src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/9.1.0/firebase-storage.js"></script>
-    <script defer src="script.js"></script>
+    <title>Firebase Notification System</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Upload Section Start  -->
-    <div class="container">
-        <h1>eBooks Download Section</h1>
-        <div id="ebook-list" class="ebook-list">
-            <!-- eBooks will be dynamically added here -->
-        </div>
-        <h2>Upload New eBook</h2>
-        <form id="upload-form">
-            <input type="text" id="title" placeholder="Title" required>
-            <input type="text" id="author" placeholder="Author" required>
-            <input type="file" id="file" accept="application/pdf" required>
-            <button type="submit">Upload</button>
-        </form>
-    </div>
-        <!-- Upload Section End  -->
-    <div class="container">
-        <h1>eBooks Download Section</h1>
-        <div id="ebook-list" class="ebook-list">
-            <!-- eBooks will be dynamically added here -->
+    <div class="marquee">
+        <div class="marquee-content" id="rss-feed">
+            <!-- RSS feed items will be inserted here -->
         </div>
     </div>
+    <!-- Firebase Notification System -->
+    <div id="notification-area"></div>
+    <form id="notification-form">
+        <h1>Firebase Notification System1</h1>
+        <input type="text" id="notification-text" placeholder="Enter notification" required>
+        <input type="datetime-local" id="notification-date" required>
+        <input type="file" id="notification-file">
+        <progress id="upload-progress" value="0" max="100" style="width: 100%; display: none;"></progress>
+        <button type="submit">Send Notification</button>
+    </form>
+        </div>
+        <!-- Simple Blog System -->
+        <header>
+            <h1>Simple Blog System</h1>
+        </header>
+        <main>
+            <section id="post-form">
+                <h2>Create a Post</h2>
+                <form id="new-post-form">
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" required>
+                        <label for="content">Content:</label>
+                        <textarea id="content" required></textarea>
+                        <label for="file">File:</label>
+                        <input type="file" id="file">
+                        <label for="image">Image:</label>
+                        <input type="file" id="image" accept="image/*">
+                        <button type="submit">Add Post</button>
+                    </form>
+            </section>
+            <section id="posts">
+                <h2>Posts</h2>
+                <div id="posts-list"></div>
+            </section>
+        </main>
+        
+          <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-app-compat.js"></script>
+          <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-database-compat.js"></script>   
+        
+          <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-storage-compat.js"></script>   
+        
+          <script src="script.js"></script> 
+
 </body>
 </html>
