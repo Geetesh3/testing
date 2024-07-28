@@ -67,65 +67,65 @@ database.ref('notifications').on('child_added', function (snapshot) {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-    const form = document.getElementById('new-post-form');
-    const postsList = document.getElementById('posts-list');
+const form = document.getElementById('new-book-form');
+const postsList = document.getElementById('Book-list');
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const title = document.getElementById('title').value;
-        const content = document.getElementById('content').value;
-        const fileInput = document.getElementById('file');
-        const imageInput = document.getElementById('image');
-        let fileUrl = null;
-        let imageUrl = null;
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const title = document.getElementById('title').value;
+    const content = document.getElementById('content').value;
+    const fileInput = document.getElementById('file');
+    const imageInput = document.getElementById('image');
+    let fileUrl = null;
+    let imageUrl = null;
 
-        if (fileInput.files.length > 0) {
-            const file = fileInput.files[0];
-            const storageRef = storage.ref('files/' + file.name);
-            await storageRef.put(file);
-            fileUrl = await storageRef.getDownloadURL();
-        }
-
-        if (imageInput.files.length > 0) {
-            const image = imageInput.files[0];
-            const storageRef = storage.ref('images/' + image.name);
-            await storageRef.put(image);
-            imageUrl = await storageRef.getDownloadURL();
-        }
-
-        addPost(title, content, fileUrl, imageUrl);
-        form.reset();
-    });
-
-    function addPost(title, content, fileUrl, imageUrl) {
-        const postId = database.ref().child('posts').push().key;
-        const post = { title, content, fileUrl, imageUrl, id: postId };
-        const updates = {};
-        updates['/posts/' + postId] = post;
-        database.ref().update(updates);
-        renderPosts();
+    if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const storageRef = storage.ref('files/' + file.name);
+        await storageRef.put(file);
+        fileUrl = await storageRef.getDownloadURL();
     }
 
-    function renderPosts() {
-        postsList.innerHTML = '';
-        database.ref('posts').once('value', (snapshot) => {
-            const posts = snapshot.val();
-            for (let id in posts) {
-                const post = posts[id];
-                const postDiv = document.createElement('div');
-                postDiv.className = 'post';
-                postDiv.innerHTML = `
-                    <h3 class="post-title">${post.title}</h3>
-                    <p>${post.content}</p>
-                    ${post.fileUrl ? `<a href="${post.fileUrl}" download="file">Download attached file</a>` : ''}
-                    ${post.imageUrl ? `<img src="${post.imageUrl}" alt="Image" style="max-width: 100%; height: auto;">` : ''}
-                `;
-                postsList.appendChild(postDiv);
-            }
-        });
+    if (imageInput.files.length > 0) {
+        const image = imageInput.files[0];
+        const storageRef = storage.ref('images/' + image.name);
+        await storageRef.put(image);
+        imageUrl = await storageRef.getDownloadURL();
     }
 
+    addPost(title, content, fileUrl, imageUrl);
+    form.reset();
+});
+
+function addPost(title, content, fileUrl, imageUrl) {
+    const postId = database.ref().child('Books').push().key;
+    const post = { title, content, fileUrl, imageUrl, id: postId };
+    const updates = {};
+    updates['/Books/' + postId] = post;
+    database.ref().update(updates);
     renderPosts();
+}
+
+function renderPosts() {
+    postsList.innerHTML = '';
+    database.ref('Books').once('value', (snapshot) => {
+        const posts = snapshot.val();
+        for (let id in posts) {
+            const post = posts[id];
+            const postDiv = document.createElement('div');
+            postDiv.className = 'post';
+            postDiv.innerHTML = `
+                <h3 class="post-title">${post.title}</h3>
+                <p>${post.content}</p>
+                ${post.fileUrl ? `<a href="${post.fileUrl}" download="file">Download attached file</a>` : ''}
+                ${post.imageUrl ? `<img src="${post.imageUrl}" alt="Image" style="max-width: 100%; height: 260px;">` : ''}
+            `;
+            postsList.appendChild(postDiv);
+        }
+    });
+}
+
+renderPosts();
 
 // Blog Manage Code
 
