@@ -69,8 +69,6 @@ firebase.initializeApp(firebaseConfig);
 
 const form = document.getElementById('new-book-form');
 const postsList = document.getElementById('Book-list');
-    const progressContainer = document.getElementById('progress-container');
-    const progressBar = document.getElementById('progress-bar');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -86,19 +84,6 @@ form.addEventListener('submit', async (e) => {
         const storageRef = storage.ref('files/' + file.name);
         await storageRef.put(file);
         fileUrl = await storageRef.getDownloadURL();
-                    uploadTask.on('state_changed', (snapshot) => {
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                progressBar.value = progress;
-            }, (error) => {
-                console.error(error);
-            }, async () => {
-                fileUrl = await storageRef.getDownloadURL();
-                if (imageInput.files.length === 0) {
-                    addPost(title, content, fileUrl, imageUrl);
-                    form.reset();
-                    progressContainer.style.display = 'none';
-                }
-            });
     }
 
     if (imageInput.files.length > 0) {
@@ -106,20 +91,7 @@ form.addEventListener('submit', async (e) => {
         const storageRef = storage.ref('images/' + image.name);
         await storageRef.put(image);
         imageUrl = await storageRef.getDownloadURL();
-                uploadTask.on('state_changed', (snapshot) => {
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                progressBar.value = progress;
-            }, (error) => {
-                console.error(error);
-            }, async () => {
-                imageUrl = await storageRef.getDownloadURL();
-                if (fileInput.files.length === 0) {
-                    addPost(title, content, fileUrl, imageUrl);
-                    form.reset();
-                    progressContainer.style.display = 'none';
-                }
-            });
-        }
+    }
 
     addPost(title, content, fileUrl, imageUrl);
     form.reset();
