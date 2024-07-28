@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBooks Download</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Firebase SDK -->
+    <script defer src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.1.0/firebase-storage.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <!-- Upload Section Start  -->
+    <div class="container">
+        <h1>eBooks Download Section</h1>
+        <div id="ebook-list" class="ebook-list">
+            <!-- eBooks will be dynamically added here -->
+        </div>
+        <h2>Upload New eBook</h2>
+        <form id="upload-form">
+            <input type="text" id="title" placeholder="Title" required>
+            <input type="text" id="author" placeholder="Author" required>
+            <input type="file" id="file" accept="application/pdf" required>
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+        <!-- Upload Section End  -->
+    <div class="container">
+        <h1>eBooks Download Section</h1>
+        <div id="ebook-list" class="ebook-list">
+            <!-- eBooks will be dynamically added here -->
+        </div>
+    </div>
+</body>
+</html>
