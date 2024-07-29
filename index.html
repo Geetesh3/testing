@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firebase Notification System</title>
+    <title>Admin: PhySci Explained</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Login Start  -->
+
+      <!-- Login End  -->
     <div class="marquee">
         <div class="marquee-content" id="rss-feed">
             <!-- RSS feed items will be inserted here -->
@@ -15,12 +19,12 @@
     <!-- Firebase Notification System -->
     <div id="notification-area"></div>
     <form id="notification-form">
-        <h1>Firebase Notification System1</h1>
         <input type="text" id="notification-text" placeholder="Enter notification" required>
         <input type="datetime-local" id="notification-date" required>
         <input type="file" id="notification-file">
         <progress id="upload-progress" value="0" max="100" style="width: 100%; display: none;"></progress>
         <button type="submit">Send Notification</button>
+        <button type="button" id="update-button" style="display: none;" onclick="updateNotification()">Update Notification</button>
     </form>
         </div>
         <!-- Simple Blog System -->
@@ -51,7 +55,9 @@
                 <div id="Book-list"></div>
             </section>
         </main>
-        
+        <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js"></script>
           <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-app-compat.js"></script>
           <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-database-compat.js"></script>   
         

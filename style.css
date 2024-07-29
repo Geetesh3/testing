@@ -10,7 +10,7 @@ body {
 
 #notification-area {
     width: 100%;
-    max-width: 600px;
+    /* max-width: 600px; */
     margin-bottom: 20px;
 }
 
@@ -125,6 +125,7 @@ progress {
     padding-left: 100%;
     animation: marquee 15s linear infinite;
 }
+/* login  */
 
 @keyframes marquee {
     from {
